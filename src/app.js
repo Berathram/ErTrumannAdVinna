@@ -1,13 +1,18 @@
 import express from 'express';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 import {
   getDayType, getNextVacation, getNextWork, isWorking,
 } from './schedule.js';
 
 const app = express();
-const host = '127.0.0.1';
-const port = 3000;
+
+dotenv.config();
+
+const {
+  PORT: port = 3000,
+} = process.env;
 app.use(express.urlencoded({ extended: true }));
 const viewsPath = `${dirname(fileURLToPath(import.meta.url))}\\..\\views`;
 app.set('views', viewsPath);
@@ -104,10 +109,8 @@ function errorHandler(err, req, res, next) { // eslint-disable-line
   res.status(500).render('error', { title, message });
 }
 
-app.listen(port, host, () => {
-  console.log(// eslint-disable-line
-    `server @ http://${host}:${port}/`,
-  );
+app.listen(port, () => {
+  console.info(`Server running at http://localhost:${port}/`);
 });
 
 app.get('/', handle);
