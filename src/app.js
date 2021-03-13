@@ -14,10 +14,10 @@ const {
   PORT: port = 3000,
 } = process.env;
 app.use(express.urlencoded({ extended: true }));
-const viewsPath = `${dirname(fileURLToPath(import.meta.url))}\\..\\views`;
+const viewsPath = `${dirname(fileURLToPath(import.meta.url))}/../views`;
 app.set('views', viewsPath);
 app.set('view engine', 'ejs');
-const staticPath = `${dirname(fileURLToPath(import.meta.url))}\\..\\public`;
+const staticPath = `${dirname(fileURLToPath(import.meta.url))}/../public`;
 app.use(express.static(staticPath));
 
 function handle(req, res) {
