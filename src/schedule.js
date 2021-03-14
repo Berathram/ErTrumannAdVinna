@@ -13,10 +13,16 @@ const schedule = [1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, 0,
  */
 function getNextWork(day) {
   const currentLoc = getScheduleLoc(day);
-  const foo = schedule.indexOf(0, currentLoc);
-  const bar = schedule.indexOf(1, currentLoc);
+  let foo = schedule.indexOf(1, (currentLoc + 1) % scheduleLength);
+  if (foo === -1) {
+    foo = schedule.indexOf(1) + scheduleLength;
+  }
+  let bar = schedule.indexOf(2, (currentLoc + 1) % scheduleLength);
+  if (bar === -1) {
+    bar = schedule.indexOf(2) + scheduleLength;
+  }
   const nextLoc = Math.min(foo, bar);
-  const nextWork = new Date(day.getTime() + 1);
+  const nextWork = new Date(day.getTime());
   nextWork.setDate(nextWork.getDate() + nextLoc - currentLoc);
   nextWork.setHours(0, 0, 0, 0);
   return nextWork;
@@ -30,7 +36,10 @@ function getNextWork(day) {
  */
 function getNextVacation(day) {
   const currentLoc = getScheduleLoc(day);
-  const nextLoc = schedule.indexOf(0, currentLoc + 1);
+  let nextLoc = schedule.indexOf(0, (currentLoc + 1) % scheduleLength);
+  if (nextLoc === -1) {
+    nextLoc = schedule.indexOf(0) + scheduleLength;
+  }
   const nextVac = new Date(day.getTime());
   nextVac.setDate(nextVac.getDate() + nextLoc - currentLoc);
   nextVac.setHours(0, 0, 0, 0);
