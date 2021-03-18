@@ -49,10 +49,10 @@ function handleIsWorking(now) {
     desc = 'Í dag er dagvakt (7:30 - 19:30)';
   }
   if (dayType === 2) {
-    desc = 'I dag er næturvakt (19:30 - 7:30)';
+    desc = 'Í dag er næturvakt (19:30 - 7:30)';
   }
   if (dayType === 0) {
-    desc = 'I dag er næturvakt til 7:30';
+    desc = 'Í dag er næturvakt til 7:30';
   }
   return { desc, next };
 }
