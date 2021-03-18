@@ -97,19 +97,19 @@ function isWorking(day) {
     }
     return false;
   }
-  if (dayType === 0 && tomorrowType === 2) {
-    if (hoursOfDay >= 19.5) {
-      return true;
-    }
-    return false;
-  }
   if (dayType === 1) {
     if (hoursOfDay >= 7.5 && hoursOfDay < 19.5) {
       return true;
     }
     return false;
   }
-  if (dayType === 2) {
+  if (dayType === 2 && yesterdayType === 0) {
+    if (hoursOfDay >= 19.5) {
+      return true;
+    }
+    return false;
+  }
+  if (dayType === 2 && yesterdayType !== 0) {
     if (hoursOfDay < 7.5 || hoursOfDay >= 19.5) {
       return true;
     }
