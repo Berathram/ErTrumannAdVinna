@@ -13,13 +13,13 @@ const schedule = [1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 2, 2, 2, 2, 0,
  */
 function getNextWork(day) {
   const currentLoc = getScheduleLoc(day);
-  let foo = schedule.indexOf(1, (currentLoc + 1) % scheduleLength);
+  let foo = schedule.indexOf(1, (currentLoc + 1));
   if (foo === -1) {
     foo = schedule.indexOf(1) + scheduleLength;
   }
-  let bar = schedule.indexOf(2, (currentLoc + 1) % scheduleLength);
+  let bar = schedule.indexOf(2, (currentLoc + 1));
   if (bar === -1) {
-    bar = schedule.indexOf(2) + scheduleLength;
+    bar = schedule.indexOf(1) + scheduleLength;
   }
   const nextLoc = Math.min(foo, bar);
   const nextWork = new Date(day.getTime());
